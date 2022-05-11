@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Family Tree</title>
+    
+</head>
+<body>
+    <table>
+        <tr><td colspan="2"><h1>FAMILY TREE</h1></td></tr>
+        <tr> <td>First Name</td> <td><input type="text" name="" id="fName"></td></tr>
+        <tr> <td>Last Name</td> <td><input type="text" name="" id="lName"></td></tr>
+        <!-- <tr> <td>Age</td> <td><input type="text" name="" id="age"></td></tr> -->
+        <tr><td><button onclick="writeList()">REGISTER</button></td><td><button>UPDATE</button></td></tr>
+    </table>
+
+    <table align="center" border="2" style="width: 70vw;">
+        <thead>
+            <tr><td colspan="5">This is All my Family Members </td></tr>
+            <tr><th>S/N</th> <th>First Name</th> <th>Last Name</th> <th title="Delete">D</th> <th>EDIT</th></tr>
+        </thead>
+        <tbody id="list">
+            
+        </tbody>
+    </table>
+
+    
+
+</body>
+</html>
