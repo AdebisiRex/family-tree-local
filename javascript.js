@@ -1,4 +1,4 @@
-b = JSON.parse(localStorage.getItem('familyTree'));
+        b = JSON.parse(localStorage.getItem('familyTree'));
         if (b != null){
             names = b;
         } else{ 
@@ -7,20 +7,21 @@ b = JSON.parse(localStorage.getItem('familyTree'));
 
         
 
+        
+
        
         function writeList(){
             if(pWord.value != rPWord.value){
-                alertMatch.innerHTML = "*Passwords don't match";
-            } else{
+                alertMatch.innerText = "*Passwords don't match";
+            } 
+            else{
                 if(email.value == ""){
-                    alertMatch.innerHTML = "Please input a valid eMail"
+                    alertMatch.innerText = "Please input a valid eMail"
                 }else{
 
-                    
-                    location.href = "index.html";
-                    
                     names.push({
-                        "firstName": fName.value, "lastName": lName.value,
+                        "firstName": fName.value, 
+                        "lastName": lName.value,
                         "dateOfBirth": dob.value,
                         "userName": uName.value,
                         "eMail": email.value,
@@ -28,9 +29,12 @@ b = JSON.parse(localStorage.getItem('familyTree'));
                     });
                     
                     disp();
+                    openLogin();
                 }
                 
             }
+
+            
 
 
         }
@@ -60,7 +64,7 @@ b = JSON.parse(localStorage.getItem('familyTree'));
         }
 
         function dele(n){
-            if(confirm('Are you sure you want to delete ' + names[n].firstName +" " + names[n].lastName + ' from this list') == true){
+            if(confirm('Are you sure you want to delete ' + names[n].firstName + " " + names[n].lastName + ' from this list') == true){
                 names.splice(n,1);
                 // a = JSON.stringify(names);
                 // localStorage.setItem('familyTree', a);
@@ -80,12 +84,55 @@ b = JSON.parse(localStorage.getItem('familyTree'));
         function updateNames(s){
             names[s].firstName = fName.value;
             names[s].lastName = lName.value;
-            // a = JSON.stringify(names);
-            // localStorage.setItem('familyTree', a);
+            
             disp();
         }
 
-       
+        function logIn(){
+            pInp = passW.value;
+            eInp = eMail.value;
 
-      
+            var regexForPassword = /^[\w]{1,}$/
 
+            if(regexForPassword.test(pInp)){
+
+                for(i in names){
+                    if(names[i].eMail  == eInp && names[i].passWord == pInp){
+                        myIndex =i; 
+                        
+                        localStorage.setItem('index', myIndex); 
+                        openDash();
+                    } else{
+                        if(eInp == "" || pInp == ""){
+                            document.getElementById('smallA').innerText = 'Email or Password Cannot be Empty' ;
+                        }else{
+                            document.getElementById('smallA').innerText = 'Invalid Email and Password ' ;
+                        }
+                        
+                    }
+                }
+            }else{
+                document.getElementById('smallA').innerText = 'Password must be a least 7 characters' ;
+            }
+
+
+            
+           
+        }
+        function openLogin(){
+            location.href = "index.html"
+        }
+
+        function openDash(){
+            location.href = "dashboard.html"
+        }
+
+
+        function welc(){
+            a = localStorage.getItem('index');
+            
+            document.getElementById('welcome').innerText = "Welcome " + names[a].firstName;
+            
+            da = new Date()
+            document.getElementById('time').innerText = "Today's date is: " + da;
+        }
